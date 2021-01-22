@@ -7,7 +7,10 @@ PRGS = spritetest.prg
 	$(CA65) $(CA65FLAGS) -t none -o $@ -l $(@:.o=.lst) $<
 
 %.prg: %.o
-	$(LD65)  $(LD65FLAGS) --lib c64.lib -u __EXEHDR__ -C c64-sprites.cfg -o $@ $^
+	$(LD65)  $(LD65FLAGS) --lib c64.lib \
+		-u __EXEHDR__ -C c64-sprites.cfg \
+		-Ln $(<:.o=.label) \
+		-o $@ $^
 
 all: $(PRGS)
 
