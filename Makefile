@@ -17,9 +17,11 @@ PRGS = spritetest.prg
 
 all: $(PRGS)
 
-spritetest.prg: sprites.o kernal.o
+spritetest.prg: sprites.o symbols.o
 
-kernal.s:
+symbols.o: symbols/kernal.s symbols/sid.s symbols/sprites.s
+
+symbols/kernal.s:
 	python getlabels.py > $@ || { rm -f $@; exit 1; }
 
 clean:
