@@ -46,7 +46,7 @@ enable    =       $D015
 
                 jsr CINT
 
-                lda #$80        ; can we calculate this?
+                lda #<(arrow/$40)
                 sta sprite0
 
                 lda arrow_color
