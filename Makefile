@@ -4,7 +4,7 @@ LD65 = ld65
 PRGS = spritetest.prg
 
 %.o: %.s
-	$(CA65) $(CA65FLAGS) -t none -o $@ -l $(@:.o=.lst) $<
+	$(CA65) $(CA65FLAGS) -g -t none -o $@ -l $(@:.o=.lst) $<
 
 %.prg: %.o
 	$(LD65)  $(LD65FLAGS) --lib c64.lib \
