@@ -66,8 +66,7 @@ pause:          dex
                 beq next
                 jmp pause
 
-next:           nop
-                iny
+next:           iny
                 bne :+
                 lda msbx
                 eor #$01
