@@ -1,3 +1,5 @@
 *.o
 *.lst
 *.prg
+sp_arrow.s
+*.lbl
