@@ -39,6 +39,9 @@ pos7y           =       $D00F
 
 msbx            =       $D010
 
+potx            =       $d419
+poty            =       $d41a
+
 enable    =       $D015
 
                 .segment        "CODE"
@@ -58,4 +61,17 @@ enable    =       $D015
                 sta pos0x
                 sta pos0y
 
-loop:           jmp loop
+                ldy #0
+loop:           sty pos0x
+                ldx #$ff
+pause:          dex
+                beq next
+                jmp pause
+
+next:           nop
+                iny
+                bne :+
+                lda msbx
+                eor #$01
+                sta msbx
+:               jmp loop
