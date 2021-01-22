@@ -8,7 +8,7 @@ print('; DO NOT EDIT (this file was generated automatically)')
 names = []
 for sprite in sprites['sprites']:
     names.append(sprite['name'])
-    print(f'{"":16}{".segment":16}"GFXDATA"')
+    print(f'{"":16}{".segment":16}"SPRITES"')
     print(f'{"":16}{".align":16}$40')
     print(f'{sprite["name"]}:')
     for row in sprite['pixels']:
