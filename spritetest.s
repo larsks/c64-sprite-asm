@@ -27,7 +27,7 @@ loop:           sty             pos0x
 
                 lda             #$0f            ; delay between sprite movements
                 sta             delayval        ; otherwise it zips by too quickly
-                lda             #$ff
+                lda             #$00
                 sta             delayval+1
                 jsr             delay
 
@@ -43,7 +43,6 @@ end:            jmp             loop
 ;
 ; generic delay loop. load iteration count into delayval.
 delay:          .scope
-                pha
                 txa
                 pha
                 tya
@@ -52,20 +51,14 @@ delay:          .scope
                 ldx             delayval+1
                 ldy             delayval
 
-loopx:          txa
-                beq loopy
-                dex
-                jmp loopx
-
-loopy:          tya
-                beq end
+loop:           dex
+                bne loop
                 dey
-                jmp             loopx
+                bne loop
 
 end:            pla
                 tay
                 pla
                 tax
-                pla
                 rts
                 .endscope
