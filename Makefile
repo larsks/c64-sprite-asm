@@ -9,15 +9,18 @@ PRGS = spritetest.prg
 %.prg: %.o
 	$(LD65)  $(LD65FLAGS) --lib c64.lib \
 		-u __EXEHDR__ -C c64-sprites.cfg \
-		-Ln $(<:.o=.label) \
+		-Ln $(<:.o=.lbl) \
 		-o $@ $^
 
 all: $(PRGS)
 
-spritetest.prg: sp_arrow.o
+spritetest.prg: sp_arrow.o kernal.o
 
 sp_arrow.s: sp_arrow.spm
 	python spm2asm.py $< > $@ || { rm -f $@; exit 1; }
+
+kernal.s:
+	python getlabels.py > $@ || { rm -f $@; exit 1; }
 
 clean:
 	rm -f $(PRGS) *.lst *.o sp_arrow.s

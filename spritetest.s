@@ -1,6 +1,4 @@
-                .import sp_arrow,sp_arrow_color
-
-SCINIT          =       $FF81
+                .import sp_arrow,sp_arrow_color,CINT
 
 sprite0         =       $07F8
 sprite1         =       $07F9
@@ -46,7 +44,7 @@ enable    =       $D015
 
                 .segment        "CODE"
 
-                jsr SCINIT
+                jsr CINT
 
                 lda #$80        ; can we calculate this?
                 sta sprite0
