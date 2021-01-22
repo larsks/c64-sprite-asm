@@ -6,6 +6,9 @@ PRGS = spritetest.prg
 %.o: %.s
 	$(CA65) $(CA65FLAGS) -g -t none -o $@ -l $(@:.o=.lst) $<
 
+%.s: %.spm
+	python spm2asm.py $< > $@ || { rm -f $@; exit 1; }
+
 %.prg: %.o
 	$(LD65)  $(LD65FLAGS) --lib c64.lib \
 		-u __EXEHDR__ -C c64-sprites.cfg \
@@ -14,13 +17,10 @@ PRGS = spritetest.prg
 
 all: $(PRGS)
 
-spritetest.prg: sp_arrow.o kernal.o
-
-sp_arrow.s: sp_arrow.spm
-	python spm2asm.py $< > $@ || { rm -f $@; exit 1; }
+spritetest.prg: sprites.o kernal.o
 
 kernal.s:
 	python getlabels.py > $@ || { rm -f $@; exit 1; }
 
 clean:
-	rm -f $(PRGS) *.lst *.o sp_arrow.s
+	rm -f $(PRGS) *.lst *.o sprites.s

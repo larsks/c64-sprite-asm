@@ -1,4 +1,4 @@
-                .import sp_arrow,sp_arrow_color,CINT
+                .import arrow,arrow_color,CINT
 
 sprite0         =       $07F8
 sprite1         =       $07F9
@@ -49,7 +49,7 @@ enable    =       $D015
                 lda #$80        ; can we calculate this?
                 sta sprite0
 
-                lda sp_arrow_color
+                lda arrow_color
                 sta color0
 
                 lda #$01

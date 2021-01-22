@@ -18,12 +18,14 @@ for sprite in sprites['sprites']:
         print(f'{"":16}{".byte":16}', end='')
         print(','.join('%{}'.format(''.join(f'{x}' for x in chunk)) for chunk in chunks))
 
+    print()
     print(f'{"":16}{".segment":16}"DATA"')
     label = f'{sprite["name"]}_color'
     names.append(label)
     label = f'{label}:'
     print(f'{label:16}{".byte":16}${sprite["color"]:02X}')
-
     print()
-    for name in names:
-        print(f'{"":16}{".export":16}{name}')
+
+print()
+for name in names:
+    print(f'{"":16}{".export":16}{name}')
