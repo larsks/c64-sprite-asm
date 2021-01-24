@@ -19,6 +19,8 @@ all: $(PRGS)
 
 spritetest.prg: sprites.o symbols.o
 
+printhex.prg: symbols.o
+
 symbols.o: symbols/kernal.s symbols/sid.s symbols/sprites.s
 
 symbols/kernal.s:
