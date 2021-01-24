@@ -1,7 +1,14 @@
 CA65 = ca65
 LD65 = ld65
 
-PRGS = spritetest.prg
+PRGS = spritetest.prg \
+       hookisr.prg \
+       printhex.prg \
+       print_macro_abuse.prg \
+       timerwait.prg
+
+GENERATED = \
+	sprites.s
 
 %.o: %.s
 	$(CA65) $(CA65FLAGS) -g -t none -o $@ -l $(@:.o=.lst) $<
@@ -27,4 +34,4 @@ symbols/kernal.s:
 	python getlabels.py > $@ || { rm -f $@; exit 1; }
 
 clean:
-	rm -f $(PRGS) *.lst *.o sprites.s
+	rm -f $(PRGS) $(GENERATED) *.lst *.o sprites.s
