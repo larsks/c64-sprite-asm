@@ -1,23 +1,12 @@
+                .export         printhex
                 .import         CHROUT
-
                 .segment        "ZEROPAGE"
-
-hexval:         .byte           0
+hexval:         .byte           0               ; temporary storage for the
+                                                ; printhex routine
 
                 .segment        "CODE"
-
-                ldx             #0
-loop:           lda             example,x
-                jsr             printhex
-                inx
-                cpx             #4
-                bne loop
-
-end:            rts
-
-example:        .byte           $CA,$FE,$BA,$BE
-
 printhex:       .scope
+                pha
                 sta             hexval          ; preserve value in a
 
                 txa                             ; save x to stack, since we're
@@ -41,6 +30,7 @@ printhex:       .scope
 
                 pla
                 tax
+                pla
                 rts
                 .endscope
 
