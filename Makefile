@@ -5,7 +5,8 @@ PRGS = spritetest.prg \
        hookisr.prg \
        printhex.prg \
        print_macro_abuse.prg \
-       timerwait.prg
+       timerwait.prg \
+       mousetest.prg
 
 GENERATED = \
 	sprites.s
@@ -29,6 +30,8 @@ spritetest.prg: sprites.o symbols.o
 printhex.prg: symbols.o
 
 symbols.o: symbols/kernal.s symbols/sid.s symbols/sprites.s symbols/joystick.s
+
+mousetest.prg: symbols.o println.o printhex.o newline.o
 
 symbols/kernal.s:
 	python getlabels.py > $@ || { rm -f $@; exit 1; }
