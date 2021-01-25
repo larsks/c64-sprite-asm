@@ -1,6 +1,7 @@
 import requests
 import time
 
+from itertools import zip_longest
 from lxml import etree
 
 url = 'https://www.pagetable.com/c64ref/kernal/'
@@ -35,6 +36,6 @@ for tr in table.xpath('tr'):
 
 print()
 namei = iter(names)
-for chunk in zip(*[namei]*5):
-    exports = ','.join(chunk)
+for chunk in zip_longest(*[namei]*5):
+    exports = ','.join(x for x in chunk if x)
     print(f'{"":16}{".export":16}{exports}')

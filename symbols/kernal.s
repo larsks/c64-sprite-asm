@@ -1,5 +1,5 @@
 ; from: https://www.pagetable.com/c64ref/kernal/
-; on:   2021-01-22 10:15:13
+; on:   2021-01-25 11:37:49
 CINT            =               $FF81            ; Initialize screen editor & 6567 video chip
 IOINIT          =               $FF84            ; Initialize I/O devices
 RAMTAS          =               $FF87            ; Perform RAM test
@@ -47,3 +47,4 @@ IOBASE          =               $FFF3            ; Define I/O memory page
                 .export         SETNAM,OPEN,CLOSE,CHKIN,CHKOUT
                 .export         CLRCHN,CHRIN,CHROUT,LOAD,SAVE
                 .export         SETTIM,RDTIM,STOP,GETIN,CLALL
+                .export         UDTIM,SCREEN,PLOT,IOBASE
