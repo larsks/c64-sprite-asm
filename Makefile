@@ -28,7 +28,7 @@ spritetest.prg: sprites.o symbols.o
 
 printhex.prg: symbols.o
 
-symbols.o: symbols/kernal.s symbols/sid.s symbols/sprites.s
+symbols.o: symbols/kernal.s symbols/sid.s symbols/sprites.s symbols/joystick.s
 
 symbols/kernal.s:
 	python getlabels.py > $@ || { rm -f $@; exit 1; }
